@@ -20,7 +20,7 @@
      	this.audioElement.src = album.songs[0].audioSrc;
   	}
 
-  	  play() {
+   play() {
      	this.audioElement.play();
      	this.setState({ isPlaying: true });
    }
@@ -28,6 +28,11 @@
    pause() {
      this.audioElement.pause();
      this.setState({ isPlaying: false });
+   }
+
+   setSong(song) {
+     this.audioElement.src = song.audioSrc;
+     this.setState({ currentSong: song });
    }
  
    render() {
