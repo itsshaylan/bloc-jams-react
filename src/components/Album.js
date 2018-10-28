@@ -4,7 +4,7 @@
   class Album extends Component {
   	constructor(props) {
   		super(props);
-  	}
+  	
 
   		const album = albumData.find( album => {
   			return album.slug === this.props.match.params.slug
@@ -34,6 +34,16 @@
      this.audioElement.src = song.audioSrc;
      this.setState({ currentSong: song });
    }
+
+   handleSongClick(song) {
+     const isSameSong = this.state.currentSong === song;
+     if (this.state.isPlaying && isSameSong) {
+       this.pause();
+     } else {
+       if (!isSameSong) { this.setSong(song); } 
+       this.play();
+     }
+   }
  
    render() {
      return (
@@ -53,6 +63,10 @@
              <col id="song-duration-column" />
            </colgroup>  
            <tbody>
+             	{this.state.album.songs.map( (song, index) => 
+			 	<tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
+			 	</tr>
+			    )}
            </tbody>
          </table>
        </section>
