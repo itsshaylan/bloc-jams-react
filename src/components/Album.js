@@ -4,17 +4,26 @@
   class Album extends Component {
   	constructor(props) {
   		super(props);
+<<<<<<< HEAD
+=======
+  	
+>>>>>>> assignment-5-audio-playback
 
      const album = albumData.find( album => {
        return album.slug === this.props.match.params.slug
      });
 
   		this.state = {
+<<<<<<< HEAD
   	  		album: album,
+=======
+  			album: album,
+>>>>>>> assignment-5-audio-playback
       		currentSong: album.songs[0],
       		isPlaying: false
   		};
 
+<<<<<<< HEAD
      this.audioElement = document.createElement('audio');
      this.audioElement.src = album.songs[0].audioSrc;
   	}
@@ -22,12 +31,25 @@
   play() {
      this.audioElement.play();
      this.setState({ isPlaying: true });
+=======
+     	this.audioElement = document.createElement('audio');
+     	this.audioElement.src = album.songs[0].audioSrc;
+  	}
+
+   play() {
+     	this.audioElement.play();
+     	this.setState({ isPlaying: true });
+>>>>>>> assignment-5-audio-playback
    }
 
    pause() {
      this.audioElement.pause();
      this.setState({ isPlaying: false });
+<<<<<<< HEAD
    }   
+=======
+   }
+>>>>>>> assignment-5-audio-playback
 
    setSong(song) {
      this.audioElement.src = song.audioSrc;
@@ -43,6 +65,7 @@
        this.play();
      }
    }
+<<<<<<< HEAD
 
      handleSongHover(song) {
     this.setState({ isHovered: song });
@@ -58,6 +81,9 @@
     }
   }
 
+=======
+ 
+>>>>>>> assignment-5-audio-playback
    render() {
      return (
        <section className="album">
@@ -76,6 +102,7 @@
              <col id="song-duration-column" />
            </colgroup>  
            <tbody>
+<<<<<<< HEAD
             {this.state.album.songs.map( (song, index) =>
    			<tr className="song" key={index} onClick={() => this.handleSongClick(song)}
                      >
@@ -88,6 +115,12 @@
                 </tr>
               )
             }
+=======
+             	{this.state.album.songs.map( (song, index) => 
+			 	<tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
+			 	</tr>
+			    )}
+>>>>>>> assignment-5-audio-playback
            </tbody>
          </table>
        </section>
