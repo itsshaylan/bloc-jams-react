@@ -98,7 +98,11 @@
 
            </tbody>
          </table>
-         <PlayerBar isPlaying={this.state.isPlaying} currentSong={this.state.currentSong}/>
+           <PlayerBar
+           isPlaying={this.state.isPlaying}
+           currentSong={this.state.currentSong}
+           handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+         />
        </section>
      );
    }
