@@ -82,6 +82,13 @@
       this.play();
     }
 
+    handleTimeChange(e) {
+      const newTime = this.audioElement.duration * e.target.value;
+      this.audioElement.currentTime = newTime;
+      this.setState({ currentTime: newTime });
+}
+
+
      handleSongHover(song) {
     this.setState({ isHovered: song });
   }
