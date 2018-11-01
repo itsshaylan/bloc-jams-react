@@ -13,6 +13,8 @@
   		this.state = {
   			album: album,
       		currentSong: album.songs[0],
+          currentTime: 0,
+          duration: album.songs[0].duration,
       		isPlaying: false
   		};
 
@@ -40,7 +42,7 @@
      if (this.state.isPlaying && isSameSong) {
        this.pause();
      } else {
-       if (!isSameSong) { this.setSong(song); } 
+       if (!isSameSong) { this.setSong(song); }
        this.play();
      }
    }
@@ -91,7 +93,7 @@
              <col id="song-number-column" />
              <col id="song-title-column" />
              <col id="song-duration-column" />
-           </colgroup>  
+           </colgroup>
            <tbody>
 
             {this.state.album.songs.map( (song, index) =>
@@ -107,7 +109,7 @@
               )
             }
 
-             	{this.state.album.songs.map( (song, index) => 
+             	{this.state.album.songs.map( (song, index) =>
 			 	<tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
 			 	</tr>
 			    )}
