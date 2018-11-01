@@ -39,16 +39,21 @@
        },
        durationchange: e => {
          this.setState({ duration: this.audioElement.duration });
-       }
+       },
+       volumeChange: e => {
+        this.setState({ volume: this.audioElement.volume});
+},
      };
      this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
      this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
+     this.audioElement.addEventListener('volumechange', this.eventListeners.volumechange);
    }
 
    componentWillUnmount() {
      this.audioElement.src = null;
      this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
      this.audioElement.removeEventListener('durationchange', this.eventListeners.durationchange);
+     this.audioElement = null;
 }
 
    setSong(song) {
@@ -87,7 +92,21 @@
       this.audioElement.currentTime = newTime;
       this.setState({ currentTime: newTime });
 }
-
+    formatTime(timeInSeconds){
+      console.log("formatTime", timeInSeconds)
+      if (timeInSeconds < 10){
+        return (Math.floor(timeInSeconds / 60 )) + ":0" + (Math.floor(timeInSeconds % 60))
+      } else if (timeInSeconds) {
+        return (Math.floor(timeInSeconds / 60 )) + ":" + (Math.floor(timeInSeconds % 60))
+      } else {
+        return "-:--";
+ }
+}
+handleVolumeChange(e){
+  const newVolume = e.target.value;
+  this.audioElement.volume = newVolume;
+ this.setState({ currentVolume: newVolume});
+}
 
      handleSongHover(song) {
     this.setState({ isHovered: song });
@@ -151,6 +170,8 @@
            handlePrevClick={() => this.handlePrevClick()}
            handleNextClick={() => this.handleNextClick()}
            handleTimeChange={(e) => this.handleTimeChange(e)}
+           handleVolumeChange = {(e) => this.handleVolumeChange(e)}
+           formatTime ={(e) => this.formatTime(e)}/>
          />
        </section>
      );
