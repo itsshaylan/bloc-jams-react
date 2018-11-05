@@ -1,0 +1,7 @@
+.player-bar {
+	background-color: grey;
+	display: inline-block;
+	padding: 15px;
+	color: white;
+	border-radius: 55px;
+}

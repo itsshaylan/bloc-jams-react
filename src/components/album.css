@@ -1,0 +1,19 @@
+#song-list {
+	padding-left: 43%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#album-title {
+	color: purple;
+	padding-top: 40px;
+}
+
+.artist {
+	margin-top: -45px;
+}
+
+#release-info {
+	font-size: 15px;
+	margin-top: -20px;
+}
