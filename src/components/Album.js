@@ -92,14 +92,14 @@
       this.audioElement.currentTime = newTime;
       this.setState({ currentTime: newTime });
 }
-  formatTime(time) {
-  var minutes = Math.floor(time / 60);
-  var seconds = Math.floor(time % 60);
-  var songTime = minutes + ':' + seconds;
-  if (songTime) {
-    return songTime;
-  } else {
-    return "-:--";
+    formatTime(time) {
+      var minutes = Math.floor(time / 60);
+      var seconds = Math.floor(time % 60);
+      var songTime = minutes + ':' + seconds;
+      if (songTime) {
+        return songTime;
+  }     else {
+        return "-:--";
   }
 }
     handleVolumeChange(e){
