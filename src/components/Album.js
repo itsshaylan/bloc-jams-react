@@ -53,7 +53,7 @@
      this.audioElement.src = null;
      this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
      this.audioElement.removeEventListener('durationchange', this.eventListeners.durationchange);
-     this.audioElement = null;
+     this.audioElement.removeEventListener('volumechange', this.eventListeners.volumechange);
 }
 
    setSong(song) {
@@ -92,20 +92,20 @@
       this.audioElement.currentTime = newTime;
       this.setState({ currentTime: newTime });
 }
-    formatTime(timeInSeconds){
-      console.log("formatTime", timeInSeconds)
-      if (timeInSeconds < 10){
-        return (Math.floor(timeInSeconds / 60 )) + ":0" + (Math.floor(timeInSeconds % 60))
-      } else if (timeInSeconds) {
-        return (Math.floor(timeInSeconds / 60 )) + ":" + (Math.floor(timeInSeconds % 60))
-      } else {
-        return "-:--";
- }
+  formatTime(time) {
+  var minutes = Math.floor(time / 60);
+  var seconds = Math.floor(time % 60);
+  var songTime = minutes + ':' + seconds;
+  if (songTime) {
+    return songTime;
+  } else {
+    return "-:--";
+  }
 }
-handleVolumeChange(e){
-  const newVolume = e.target.value;
-  this.audioElement.volume = newVolume;
- this.setState({ currentVolume: newVolume});
+    handleVolumeChange(e){
+      const newVolume = e.target.value / 100;
+      this.audioElement.volume = newVolume;
+      this.setState({ currentVolume: newVolume});
 }
 
      handleSongHover(song) {
@@ -140,7 +140,6 @@ handleVolumeChange(e){
              <col id="song-duration-column" />
            </colgroup>
            <tbody>
-
             {this.state.album.songs.map( (song, index) =>
    			<tr className="song" key={index} onClick={() => this.handleSongClick(song)}
                      >
@@ -149,7 +148,7 @@ handleVolumeChange(e){
 
                   </td>
                   <td className="song-title">{song.title}</td>
-                  <td className="song-duration">{song.duration}</td>
+                  <td className="song-duration">{this.formatTime(song.duration)}</td>
                 </tr>
               )
             }
@@ -171,7 +170,7 @@ handleVolumeChange(e){
            handleNextClick={() => this.handleNextClick()}
            handleTimeChange={(e) => this.handleTimeChange(e)}
            handleVolumeChange = {(e) => this.handleVolumeChange(e)}
-           formatTime ={(e) => this.formatTime(e)}/>
+           formatTime ={(time) => this.formatTime(time)}/>
          />
        </section>
      );
